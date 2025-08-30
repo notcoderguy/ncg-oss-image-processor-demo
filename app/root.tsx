@@ -1,14 +1,15 @@
 import {
   isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
-
+    Links,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+  } from "react-router";
+  import { Toaster } from "sonner";
 import type { Route } from "./+types/root";
 import "./app.css";
+import React from "react";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,15 +26,16 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="bg-background text-foreground">
+          {children}
+          <Toaster theme="dark" richColors position="top-right" />
         <ScrollRestoration />
         <Scripts />
       </body>
